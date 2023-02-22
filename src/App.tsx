@@ -5,7 +5,7 @@ function App() {
   return (
     <div>
       <Circle bgColor="orange" />
-      <Circle bgColor="red" />
+      <Circle borderColor="black" bgColor="red" />
     </div>
   );
 }
