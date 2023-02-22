@@ -13,10 +13,16 @@ const Container = styled.div<ContainerProps>`
 
 interface CircleProps {
   bgColor: string; //필수값으로 넣어줘야함
-  borderColor?: string; //oprional (넣어줘도 되고 안넣어줘도 되고) borderColor: string | undefined 라고 써줄 수도 있음
+  borderColor?: string; //optional (넣어줘도 되고 안넣어줘도 되고) borderColor: string | undefined 라고 써줄 수도 있음
+  text?: string;
 }
-function Circle({ bgColor, borderColor }: CircleProps) {
-  return <Container bgColor={bgColor} borderColor={borderColor ?? bgColor} />;
+function Circle({ bgColor, borderColor, text = "Default text" }: CircleProps) {
+  //text가 존재하지 않으면 Default text이게 나옴
+  return (
+    <Container bgColor={bgColor} borderColor={borderColor ?? bgColor}>
+      {text}
+    </Container>
+  );
   //borderColor ?? : borderColor가 undefined상태라면?없다면? (??은 폴백이라고 함)
 }
 
