@@ -25,7 +25,6 @@ const rotateAnimation = keyframes`
 
 const Emoji = styled.span`
   font-size: 36px;
-
   &:active {
     opacity: 0;
   }
@@ -39,7 +38,6 @@ const Box = styled.div`
   height: 200px;
   background-color: paleturquoise;
   animation: ${rotateAnimation} 1s linear infinite;
-
   ${Emoji} {
     &:hover{
       font-size: 60px;
