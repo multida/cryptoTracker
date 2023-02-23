@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useState } from "react";
 interface ContainerProps {
   bgColor: string;
   borderColor: string; //스타일쪽은 required로 해줌
@@ -18,6 +19,9 @@ interface CircleProps {
 }
 function Circle({ bgColor, borderColor, text = "Default text" }: CircleProps) {
   //text가 존재하지 않으면 Default text이게 나옴
+  const [counter, setCounter] = useState<number | string>(1);
+  //<number|string>는 number 또는 string 타입이 되길 원한다면!
+  setCounter(2);
   return (
     <Container bgColor={bgColor} borderColor={borderColor ?? bgColor}>
       {text}
