@@ -41,6 +41,10 @@ const Title = styled.h1`
   color: ${(props) => props.theme.accentColor};
 `;
 
+const Loading = styled.div`
+  text-align: center;
+`;
+
 interface CoinsInterface {
   id: string;
   name: string;
@@ -53,11 +57,13 @@ interface CoinsInterface {
 
 function Coins() {
   const [coins, setCoins] = useState<CoinsInterface[]>([]);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     (async () => {
       const response = await fetch("https://api.coinpaprika.com/v1/coins");
       const json = await response.json();
       setCoins(json.slice(0, 100));
+      setLoading(false);
     })();
   }, []);
   return (
@@ -65,13 +71,18 @@ function Coins() {
       <Header>
         <Title>코인</Title>
       </Header>
-      <CoinsList>
-        {coins.map((coin) => (
-          <Coin key={coin.id}>
-            <Link to={`/${coin.id}`}>{coin.name} &rarr;</Link>
-          </Coin>
-        ))}
-      </CoinsList>
+
+      {loading ? (
+        <Loading> "Loading..."</Loading>
+      ) : (
+        <CoinsList>
+          {coins.map((coin) => (
+            <Coin key={coin.id}>
+              <Link to={`/${coin.id}`}>{coin.name} &rarr;</Link>
+            </Coin>
+          ))}
+        </CoinsList>
+      )}
     </Container>
   );
 }
